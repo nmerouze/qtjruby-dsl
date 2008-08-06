@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.platform = "ruby"
   s.date = "Wed Aug 06 00:00:00 +0200 2008"
   s.homepage = "http://qtjruby.org"
-  s.add_dependency "qtjruby-core", ">= 0.2.1, runtime"
+  s.add_dependency "qtjruby-core", ">= 0.2.1"
   s.bindir = "bin"
   s.summary = "Qt meets Java meets Ruby."
   s.specification_version = "2"

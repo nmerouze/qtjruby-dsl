@@ -20,7 +20,7 @@ spec = Gem::Specification.new do |s|
   s.description  = s.summary
   s.require_path = "lib"
   s.files        = %w( LICENSE README.textile Rakefile ) + Dir["{bin,lib}/**/*"]
-  s.add_dependency 'qtjruby-core', '>= 0.2.1'
+  s.add_dependency "qtjruby-core", ">= 0.2.1"
 
   # rdoc
   s.has_rdoc         = false
@@ -39,14 +39,14 @@ namespace :github do
   task :update_gemspec do
     skip_fields = %w(new_platform original_platform)
     integer_fields = %w(specification_version)
-    
+ 
     result = "Gem::Specification.new do |s|\n"
-    spec.instance_variables.each do |ivar| 
+    spec.instance_variables.each do |ivar|
       value = spec.instance_variable_get(ivar)
       name  = ivar.split("@").last
       next if skip_fields.include?(name) || value.nil? || value == "" || (value.respond_to?(:empty?) && value.empty?)
       if name == "dependencies"
-        value.each do |d| 
+        value.each do |d|
           dep, *ver = d.to_s.split(" ")
           result <<  "  s.add_dependency #{dep.inspect}, #{ver.join(" ").inspect.gsub(/[()]/, "")}\n"
         end
