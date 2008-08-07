@@ -13,9 +13,8 @@ Gem::Specification.new do |s|
  "lib/qtjruby-dsl/qt/ext/web_view.rb"]
   s.rubygems_version = "1.2.0"
   s.platform = "ruby"
-  s.date = "Wed Aug 06 00:00:00 +0200 2008"
+  s.date = "Thu Aug 07 00:00:00 +0200 2008"
   s.homepage = "http://qtjruby.org"
-  s.add_dependency "qtjruby-core", ">= 0.2.1"
   s.bindir = "bin"
   s.summary = "Qt meets Java meets Ruby."
   s.specification_version = "2"

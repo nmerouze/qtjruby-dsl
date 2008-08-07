@@ -20,7 +20,6 @@ spec = Gem::Specification.new do |s|
   s.description  = s.summary
   s.require_path = "lib"
   s.files        = %w( LICENSE README.textile Rakefile ) + Dir["{bin,lib}/**/*"]
-  s.add_dependency "qtjruby-core", ">= 0.2.1"
 
   # rdoc
   s.has_rdoc         = false
