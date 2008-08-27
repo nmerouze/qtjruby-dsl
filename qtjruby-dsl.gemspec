@@ -8,18 +8,19 @@ Gem::Specification.new do |s|
  "lib/qtjruby-dsl/builder.rb",
  "lib/qtjruby-dsl/qt",
  "lib/qtjruby-dsl/qt.rb",
+ "lib/qtjruby-dsl/version.rb",
  "lib/qtjruby-dsl/qt/ext",
  "lib/qtjruby-dsl/qt/ext/video_player.rb",
  "lib/qtjruby-dsl/qt/ext/web_view.rb"]
   s.rubygems_version = "1.2.0"
-  s.platform = "ruby"
-  s.date = "Thu Aug 07 00:00:00 +0200 2008"
+  s.platform = "java"
+  s.date = "Wed Aug 27 00:00:00 +0200 2008"
   s.homepage = "http://qtjruby.org"
   s.bindir = "bin"
   s.summary = "Qt meets Java meets Ruby."
   s.specification_version = "2"
   s.email = "nicolas.merouze@gmail.com"
-  s.version = "0.2.1"
+  s.version = "0.2.2"
   s.required_rubygems_version = ">= 0"
   s.require_paths = ["lib"]
   s.required_ruby_version = ">= 0"

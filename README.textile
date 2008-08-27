@@ -4,22 +4,11 @@ h2. Description
 
 Give a little sugar to Qt::JRuby.
 
-h2. Requirements
-
-* Java 1.5+
-* Qt Jambi 4.4+
-* JRuby 1.1.3+
-* Qt::JRuby Core 0.2.1+
-
 h2. Installation
 
 <pre><code>git clone git://github.com/nmerouze/qtjruby-dsl.git
 cd /path/to/qtjruby-dsl
-jruby -S rake</code></pre>
-
-or
-
-<pre><code>jruby -S gem install nmerouze-qtjruby-dsl --source http://gems.github.com</code></pre>
+jruby -S rake install</code></pre>
 
 h2. Example
 

@@ -4,15 +4,16 @@ require 'rake/gempackagetask'
 windows = (ENV_JAVA['os.name'] =~ /Windows/) rescue nil
 SUDO = windows ? "" : "sudo"
 
+require 'lib/qtjruby-dsl/version'
+
 NAME = 'qtjruby-dsl'
-VERSION = '0.2.1'
 
 task :default => :install
 
 spec = Gem::Specification.new do |s|
   s.name         = NAME
-  s.version      = VERSION
-  s.platform     = Gem::Platform::RUBY
+  s.version      = Qt::JRuby::DSL::VERSION
+  s.platform     = "java"
   s.author       = "Nicolas Merouze"
   s.email        = "nicolas.merouze@gmail.com"
   s.homepage     = "http://qtjruby.org"
@@ -23,6 +24,9 @@ spec = Gem::Specification.new do |s|
 
   # rdoc
   s.has_rdoc         = false
+  
+  # Dependencies
+  # s.add_dependency "qtjruby-core", ">=0.2.2"
 end
 
 Rake::GemPackageTask.new(spec) do |package|
@@ -30,7 +34,7 @@ Rake::GemPackageTask.new(spec) do |package|
 end
 
 task :install => :package do
-  sh %{#{SUDO} #{ENV_JAVA['jruby.home']}/bin/jruby -S gem install pkg/#{NAME}-#{VERSION}.gem --no-rdoc --no-ri}
+  sh %{#{SUDO} #{ENV_JAVA['jruby.home']}/bin/jruby -S gem install --local pkg/#{NAME}-#{Qt::JRuby::DSL::VERSION}-java.gem  --no-update-sources}
 end
 
 namespace :github do
