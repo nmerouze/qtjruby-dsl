@@ -1,2 +1,4 @@
-require 'qtjruby-dsl' / :builder
-require 'qtjruby-dsl' / :qt
+dir = Pathname(__FILE__).dirname.expand_path / 'qtjruby-dsl'
+
+require dir / 'builder'
+require dir / 'qt'

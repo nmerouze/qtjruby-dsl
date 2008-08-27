@@ -1,7 +1,7 @@
-extlib = File.join(File.dirname(__FILE__), 'qt', 'ext')
+dir = Pathname(__FILE__).dirname.expand_path / 'qt' / 'ext'
 
-require extlib / :video_player
-require extlib / :web_view
+require dir / 'video_player'
+require dir / 'web_view'
 
 module Qt
   class << self

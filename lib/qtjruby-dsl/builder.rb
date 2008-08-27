@@ -2,14 +2,15 @@ module Qt
   module JRuby
     module Builder
       
-      mattr_accessor :windows, :layouts, :menus, :elements
-      @@windows, @@layouts, @@menus = [], [], []
+      @windows, @layouts, @menus = [], [], []
       
       class << self
         
+        attr_accessor :windows, :layouts, :menus, :elements
+        
         def create(name, options = {}, &block)
-          @@elements ||= {}
-          @@elements[name.to_sym] = block
+          @elements ||= {}
+          @elements[name.to_sym] = block
           
           method("create_#{options[:type]}").call(name)
         end
@@ -18,7 +19,7 @@ module Qt
           self.class_eval %{
             def self.#{name}(*args, &block)
               source = source('#{name}', *args)
-              @@layouts.first.add_widget(source)
+              @layouts.first.add_widget(source)
               
               render(source, &block)
             end
@@ -29,17 +30,17 @@ module Qt
           self.class_eval %{
             def self.#{name}(*args, &block)
               source = source('#{name}', *args)
-              @@layouts.first.add_layout(source) unless @@layouts.empty? # FIXME: Bug with multi-window applications
-              @@layouts.unshift(source)
+              @layouts.first.add_layout(source) unless @layouts.empty?
+              @layouts.unshift(source)
 
               render(source, &block)
-              @@layouts.shift
+              @layouts.shift
             end
           }
         end
         
         def source(name, *args)
-          @@elements[name.to_sym].call(args)
+          @elements[name.to_sym].call(args)
         end
         
         def render(source, &block)
@@ -87,46 +88,46 @@ module Qt
       end
       
       def self.window(&block)
-        @@windows.unshift(Qt::Widget.new)
-        @@windows.first.layout = vbox(&block)
+        @windows.unshift(Qt::Widget.new)
+        @windows.first.layout = vbox(&block)
         
-        return @@windows.shift
+        return @windows.shift
       end
       
       # Dialogs
       
       def self.alert(text = nil, title = nil)
-        dialog = Qt::MessageBox.information(@@windows.first, title, text)
+        dialog = Qt::MessageBox.information(@windows.first, title, text)
         yield if dialog == Qt::MessageBox::StandardButton::Ok && block_given?
       end
       
       def self.input_dialog(label = nil, title = 'Input Dialog')
-        text = Qt::InputDialog.get_text(@@windows.first, title, label)
+        text = Qt::InputDialog.get_text(@windows.first, title, label)
         yield text if !text.nil? && !text.empty? && block_given?
       end
       
       # Menus
       
       def self.action(*args, &block)
-        source = Qt::Action.new(*args.push(@@windows.first))
-        @@menus.first.add_action(source)
+        source = Qt::Action.new(*args.push(@windows.first))
+        @menus.first.add_action(source)
 
         render(source, &block)
       end
       
       def self.menu(*args, &block)
         source = Qt::Menu.new(*args)
-        @@menus.first.add_menu(source)
-        @@menus.unshift(source)
+        @menus.first.add_menu(source)
+        @menus.unshift(source)
 
         render(source, &block)
-        @@menus.shift
+        @menus.shift
       end
       
       def self.menu_bar(*args, &block)
-        @@menus.unshift(Qt::MenuBar.new(@@windows.first))
-        render(@@menus.first, &block)
-        @@menus.shift
+        @menus.unshift(Qt::MenuBar.new(@windows.first))
+        render(@menus.first, &block)
+        @menus.shift
       end
       
       # Layouts
