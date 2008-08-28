@@ -1,6 +1,7 @@
 dir = Pathname(__FILE__).dirname.expand_path / 'cute'
 
 require dir / 'app'
+
 require dir / 'window'
 
 require dir / 'hbox'

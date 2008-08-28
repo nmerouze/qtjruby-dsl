@@ -26,7 +26,7 @@ spec = Gem::Specification.new do |s|
   s.has_rdoc         = false
   
   # Dependencies
-  # s.add_dependency "qtjruby-core", ">=0.2.2"
+  # s.add_dependency "qtjruby-core", ">=#{Qt::JRuby::DSL::VERSION}"
 end
 
 Rake::GemPackageTask.new(spec) do |package|
