@@ -6,6 +6,8 @@ Give a little sugar to Qt::JRuby.
 
 h2. Installation
 
+Install "Qt::JRuby Core":http://github.com/nmerouze/qtjruby-core. Then :
+
 <pre><code>git clone git://github.com/nmerouze/qtjruby-dsl.git
 cd /path/to/qtjruby-dsl
 jruby -S rake install</code></pre>
@@ -14,10 +16,8 @@ h2. Example
 
 <pre><code>require 'qtjruby-dsl'
 
-Qt.app do
-	window :id => 'main' do
-		button('Click Me!').clicked { alert 'Clicked!' }
-	end
+Cute.app do
+	button('Click Me!') { alert 'Clicked!' }
 end</code></pre>
 
 h2. License and support
