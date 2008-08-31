@@ -3,6 +3,11 @@ module Cute
     def initialize(options = {}, &block)
       @source = Qt::Widget.new
       
+      case
+        when options[:parent]
+          @parent = options[:parent]
+      end
+      
       self.inject(@source) do |c, p|
         vbox(&block)
         c.show unless options[:show].blank?
@@ -16,8 +21,12 @@ module Cute
       @widgets.pop
     end
     
+    def include(mod)
+      meta_class.class_eval { include mod }
+    end
+    
     def window(options = {}, &block)
-      Cute::Window.new(options, &block)
+      Cute::Window.new(options.merge(:parent => self), &block)
     end
     
     [:show, :hide, :close].each do |meth_name|

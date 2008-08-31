@@ -1,4 +1,4 @@
 * Create documentation
 * Add window and widgets options
 * Replace *args by real arguments
-* Add more widgets
+* Add more widgets : image, audio, progress, radio, check_box...
