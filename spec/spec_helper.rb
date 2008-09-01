@@ -4,7 +4,7 @@ require 'rubygems'
 gem 'rspec'
 require 'spec'
 
-$:.unshift(File.dirname(__FILE__) + '/../../qtjruby-core/lib')
+gem 'qtjruby-core'
 require 'qtjruby-core'
 
 $:.unshift(File.dirname(__FILE__) / '..' / 'lib')
