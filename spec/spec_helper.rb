@@ -22,8 +22,13 @@ module Cute
   end
 end
 
-def window(&block)
-  @window = Cute::Window.new(&block)
+Spec::Runner.configure do |config|
+  def window(&block)
+    @window = Cute::Window.new(&block)
+  end
+  
+  Qt::Application.initialize(ARGV)
 end
 
-Qt::Application.initialize(ARGV)
+
+
