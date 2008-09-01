@@ -79,8 +79,11 @@ module Cute
     end
     
     module Widgets
-      def button(*args, &block)
-        self.inject(Qt::PushButton.new(*args)) do |c, p|
+      def button(title = nil, icon = nil, &block)
+        options = [icon, title].compact
+        options[0] = Qt::Icon.new(icon) if options.size == 2
+        
+        self.inject(Qt::PushButton.new(*options)) do |c, p|
           c.clicked(&block) if block_given?
           p.add_widget(c)
         end
